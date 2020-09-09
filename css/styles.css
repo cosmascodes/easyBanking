@@ -1,0 +1,237 @@
+*,*::before,*::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+li{
+    list-style: none;
+}
+:root{
+    --DarkBlue: hsl(233, 26%, 24%);
+    --LimeGreen: hsl(136, 65%, 51%);
+    --BrighCyan: hsl(192, 70%, 51%);
+}
+body,html{
+    height: 100%;
+}
+html{
+    font-size: calc(1em + 1vw);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* HEADER */
+header{
+    height: 60px;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.2em;
+    position: relative;
+}
+header h1{
+    font-size: .8rem;
+}
+
+/* HEADER BARS */
+header span{
+    position: relative;
+    width: 24px;
+    height: 3px;
+    background: #555;
+    transition: background .3s ease-in;
+}
+header span::before,header span::after{
+    position: absolute;
+    content: '';
+    height: 3px;
+    right: 0;
+    background-color: #555;
+    transition: all .3s ease-in;
+}
+header span::before{
+    width: 28px;
+    bottom: 7px;
+}
+header span::after{
+    width: 16px;
+    top: 7px;
+}
+
+/* MENU */
+header .menu{
+    transform-origin: top;
+    transform: scale(1,0);
+    position: absolute;
+    width: 100%;
+    height: calc(100vh - 60px);
+    top: 100%;
+    left: 0;
+    background: linear-gradient(to bottom,rgba(0,0,0,.8),rgba(0,0,0,.4));
+    transition: transform .3s ease-in;
+}
+header .menu ul{
+    width: 80%;
+    background: transparent;
+    margin: 1.2em auto;
+    border-radius: 6px;
+    text-align: center;
+    padding: .8em 0;
+}
+header .menu ul li{
+    margin: .8em;
+    opacity: 0;
+    color: #555;
+}
+header .menu ul li:hover{
+    cursor: pointer;
+}
+
+/* MENU TRIGGER CHECKBOX */
+#menu-trigger{
+    display: none;
+}
+#menu-trigger:checked ~ .menu{
+    transform: scale(1,1);
+    transition: transform .3s ease-in;
+}
+#menu-trigger:checked ~ .menu ul{
+    background: #fff;
+    transition: background .2s ease-in .3s;
+}
+#menu-trigger:checked ~ .menu ul li{
+    opacity: 1;
+    transition: opacity .2s ease-in .5s;
+}
+#menu-trigger:checked ~ .menu-trigger-label span{
+    background: transparent;
+    transition: background .3s ease-in;
+}
+#menu-trigger:checked ~ .menu-trigger-label span::before{
+    transform: rotate(45deg);
+}
+#menu-trigger:checked ~ .menu-trigger-label span::after{
+    width: 28px;
+    transform: rotate(-45deg);
+}
+#menu-trigger:checked ~ .menu-trigger-label span::before,
+#menu-trigger:checked ~ .menu-trigger-label span::after{
+    transition: transform .3s ease-in;
+}
+/* THE MAGIC */
+#menu-trigger:checked ~ .menu-trigger-label:not(.class) span::before,
+#menu-trigger:checked ~ .menu-trigger-label:not(.class) span::after{
+    top: 0;
+}
+
+header .menu-trigger-label{
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+ /* REQUEST INVITE BTN */
+ header button{
+     display: none;
+ }
+
+
+ /* MAIN */
+ main{
+    background: rgb(241, 241, 241);
+ }
+
+ /* Landing section */
+ main #landing{
+    height: 100vh;
+     display: flex;
+     flex-direction: column;
+ }
+/* Image holder */
+ main #landing .landing-img{
+     flex: 1;
+     background-image: url('../images/bg-intro-mobile.svg');
+     background-repeat: no-repeat;
+     background-position: right;
+     background-size: cover;
+ }
+ main #landing .landing-img img{
+     width: 100%;
+     margin-top: -28vh;
+ }
+
+ /* Text holder */
+ main #landing .landing-txt{
+    flex: .7;
+    text-align: center;
+ }
+ main #landing .landing-txt h1{
+     font-size: 2.4rem;
+     font-weight: 300;
+ }
+ main #landing .landing-txt p{
+     margin: 1.2rem 0;
+     color: #777;
+     line-height: 1.5;
+ }
+ button{
+     border-radius: 50px;
+     padding: 14px 2rem;
+     font-size: .9rem;
+     border: transparent;
+     color: #fff;
+     background: linear-gradient(120deg,var(--LimeGreen),var(--BrighCyan) );
+ }
+
+
+ @media screen and (min-width: 724px){
+     /* HEADER */
+     header .menu-trigger-label{
+         display: none;
+     }
+     header button{
+         display: flex;
+        padding: 8px 1rem;
+        font-size: 16px;
+     }
+     header .menu{
+        all: unset;
+    }
+    header nav ul{
+        all: unset;
+        display: flex;
+    }
+    header nav ul li{
+        opacity: 1;
+        font-size: 16px;
+    }
+
+    /* MAIN */
+    main #landing{
+         flex-direction: row-reverse;
+     }
+     main #landing .landing-img{
+        flex: 1;
+        background-image: url('../images/bg-intro-desktop.svg');
+        background-position-x: 60px;
+        background-position-y: -150px;
+    }
+    main #landing .landing-img img{
+        width: 85%;
+        margin-right: -200px;
+    }
+    main #landing .landing-txt{
+       flex: .8;
+       text-align: left;
+       padding: 3em 1.2em;
+    }
+    main #landing .landing-txt h1{
+        font-size: 1.8rem;
+    }
+    main #landing .landing-txt p{
+        font-size: .8rem;
+    }
+    main #landing .landing-txt button{
+        font-size: .6rem;
+    }
+ }
