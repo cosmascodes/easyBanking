@@ -207,6 +207,9 @@ header .menu-trigger-label{
     }
 
     /* MAIN */
+      main,body{
+         background: rgb(241, 241, 241);
+      }
     main #landing{
          flex-direction: row-reverse;
      }
